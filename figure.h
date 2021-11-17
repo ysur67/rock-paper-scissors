@@ -1,12 +1,14 @@
 
 #ifndef FIGURE_H
 #define FIGURE_H
+#include <string>
+using std::string;
 
 class IFigure {
 
-public:
-    virtual ~IFigure() { };
-    virtual bool beats(IFigure &another) = 0;
+    public:
+        virtual ~IFigure() { };
+        virtual bool beats(IFigure &another) = 0;
 };
 
 class Rock : public IFigure {
