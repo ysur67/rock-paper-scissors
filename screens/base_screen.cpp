@@ -18,3 +18,7 @@ void BaseGameScreen::displayUserChoiceError(char choice) {
 void BaseGameScreen::clearScreen() {
     std::system("clear");
 }
+
+GameController* BaseGameScreen::getController() {
+    return this->controller;
+}

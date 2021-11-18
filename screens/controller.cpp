@@ -4,21 +4,23 @@
 using std::string;
 using std::cout;
 
+
 GameController::GameController() {
-    MainMenu screen = MainMenu(this);
-    this->currentScreen = &screen;
+    MainMenu* screen = new MainMenu(this);
+    this->currentScreen = screen;
+    this->currentScreen->display();
 };
 
+void GameController::setScreen(BaseGameScreen *newScreen) {
+    this->currentScreen = newScreen;
+    this->currentScreen->display();
+}
+
 void GameController::update() {
-    (*this).currentScreen->update();
+    this->currentScreen->update();
     if (this->currentScreen->shouldUpdateDisplay) {
         this->currentScreen->display();
     }
-}
-
-void GameController::setScreen(IScreen* newScreen) {
-    this->currentScreen = newScreen;
-    this->currentScreen->display();
 }
 
 void GameController::exitGame() {

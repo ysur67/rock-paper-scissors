@@ -2,17 +2,19 @@
 #ifndef CONTROLLER_H
 #define CONTOLLER_H
 #include "screen.h"
+#include <memory>
+using std::auto_ptr;
 
-class IScreen;
+class BaseGameScreen;
 
 class GameController {
     private:
-        IScreen* currentScreen;
+        BaseGameScreen* currentScreen;
 
     public:
         GameController();
         void update();
-        void setScreen(IScreen* newScreen);
+        void setScreen(BaseGameScreen *newScreen);
         void exitGame();
 };
 

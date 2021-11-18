@@ -2,11 +2,14 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 #include "controller.h"
+#include <string>
+using std::string;
 
 class GameController;
 
 class IScreen {
     public:
+        static const char name = 'a';
         bool shouldUpdateDisplay = false;
         virtual void display() = 0;
         virtual void update() = 0;
@@ -16,7 +19,7 @@ class IScreen {
 class BaseGameScreen : public IScreen {
     public:
         BaseGameScreen(GameController* controller);
-        ~BaseGameScreen() = default;
+        GameController* getController();
 
     protected:
         GameController* controller;
@@ -26,10 +29,10 @@ class BaseGameScreen : public IScreen {
 
 class MainMenu : public BaseGameScreen {
     public:
+        static const char name = 'M';
         MainMenu(GameController* controller) : BaseGameScreen(controller) {};
         void display() override;
         void update() override;
-        ~MainMenu() = default;
     private:
         static const char START_GAME_ID = '1';
         static const char EXIT_GAME_ID = '2';
@@ -39,10 +42,10 @@ class MainMenu : public BaseGameScreen {
 
 class SelectFigureScreen : public BaseGameScreen {
     public:
+        static const char name = 'F';
         SelectFigureScreen(GameController* contoller) : BaseGameScreen(contoller) {};
         void display() override;
         void update() override;
-        ~SelectFigureScreen() = default;
 
     protected:
         static const char ROCK_ID = '1';

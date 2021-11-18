@@ -5,6 +5,7 @@ using std::string;
 using std::cout;
 using std::cin;
 
+
 void MainMenu::display() {
    displayInfo();
 }
@@ -19,13 +20,13 @@ void MainMenu::displayInfo() {
 void MainMenu::update() {
     char userChoice;
     cin >> userChoice;
-    if (userChoice != this->START_GAME_ID || userChoice != this->EXIT_GAME_ID) {
+    if (userChoice != this->START_GAME_ID && userChoice != this->EXIT_GAME_ID) {
         return this->displayUserChoiceError(userChoice);
     }
     switch (userChoice) {
         case this->START_GAME_ID: {
-            SelectFigureScreen screen = SelectFigureScreen(controller);
-            this->controller->setScreen(&screen);
+            SelectFigureScreen* screen = new SelectFigureScreen(controller);
+            this->controller->setScreen(screen);
             break;
         }
         case this->EXIT_GAME_ID:
