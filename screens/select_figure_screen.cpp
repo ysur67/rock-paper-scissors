@@ -21,7 +21,10 @@ void SelectFigureScreen::update() {
         return this->displayUserChoiceError(choice);
     }
     IFigure* userFigure = this->getFigure(choice);
+    this->clearScreen();
     cout << "You have choosen a " << userFigure->getName() << std::endl;
+    ComparingFiguresScreen* screen = new ComparingFiguresScreen(this->controller, userFigure);
+    return this->controller->setScreen(screen);
 }
 
 IFigure* SelectFigureScreen::getFigure(char code) {

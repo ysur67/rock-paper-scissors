@@ -10,7 +10,6 @@ class GameController;
 
 class IScreen {
     public:
-        static const char name = 'a';
         bool shouldUpdateDisplay = false;
         virtual void display() = 0;
         virtual void update() = 0;
@@ -30,7 +29,6 @@ class BaseGameScreen : public IScreen {
 
 class MainMenu : public BaseGameScreen {
     public:
-        static const char name = 'M';
         MainMenu(GameController* controller) : BaseGameScreen(controller) {};
         void display() override;
         void update() override;
@@ -43,7 +41,6 @@ class MainMenu : public BaseGameScreen {
 
 class SelectFigureScreen : public BaseGameScreen {
     public:
-        static const char name = 'F';
         SelectFigureScreen(GameController* contoller) : BaseGameScreen(contoller) {};
         void display() override;
         void update() override;
@@ -53,6 +50,20 @@ class SelectFigureScreen : public BaseGameScreen {
         static const char ROCK_ID = '1';
         static const char PAPER_ID = '2';
         static const char SCISSORS_ID = '3';
+};
+
+
+class ComparingFiguresScreen : public BaseGameScreen {
+    public:
+        ComparingFiguresScreen(GameController* controller, IFigure* userFigure);
+        void display() override;
+        void update() override;
+    private:
+        IFigure* userFigure;
+        IFigure* computerFigure;
+        static const char TRY_AGAIN_ID = '1';
+        static const char EXIT_ID = '2';
+        static IFigure* getRandomFigure();
 };
 
 #endif
