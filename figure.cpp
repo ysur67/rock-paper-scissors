@@ -1,5 +1,11 @@
 #include "figure.h"
+#include <string>
+using std::string;
 
+
+string IFigure::getName() {
+    return name;
+}
 
 template <class DstType, class SrcType>
 bool IsType(const SrcType* src)

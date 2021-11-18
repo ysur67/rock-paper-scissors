@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include "screen.h"
+#include "../figure.h"
 using std::string;
 using std::cout;
 using std::cin;
@@ -19,12 +20,22 @@ void SelectFigureScreen::update() {
     if (choice != ROCK_ID && choice != PAPER_ID && choice != SCISSORS_ID) {
         return this->displayUserChoiceError(choice);
     }
-    switch (choice) {
+    IFigure* userFigure = this->getFigure(choice);
+    cout << "You have choosen a " << userFigure->getName() << std::endl;
+}
+
+IFigure* SelectFigureScreen::getFigure(char code) {
+    switch (code) {
         case ROCK_ID:
-            cout << std::endl;
+            return new Rock();
             break;
+        case PAPER_ID:
+            return new Paper();
+            break;
+        case SCISSORS_ID:
+            return new Scissors();
         default:
-            cout << std::endl;
+            throw std::invalid_argument("There is no such figure");
             break;
     }
 }

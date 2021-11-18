@@ -3,6 +3,7 @@
 #define SCREEN_H
 #include "controller.h"
 #include <string>
+#include "../figure.h"
 using std::string;
 
 class GameController;
@@ -46,6 +47,7 @@ class SelectFigureScreen : public BaseGameScreen {
         SelectFigureScreen(GameController* contoller) : BaseGameScreen(contoller) {};
         void display() override;
         void update() override;
+        static inline IFigure* getFigure(char code);
 
     protected:
         static const char ROCK_ID = '1';
