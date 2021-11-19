@@ -12,6 +12,7 @@ GameController::GameController() {
 };
 
 void GameController::setScreen(BaseGameScreen *newScreen) {
+    delete this->currentScreen;
     this->currentScreen = newScreen;
     this->currentScreen->display();
 }
